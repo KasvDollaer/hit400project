@@ -9,7 +9,7 @@ def fault_number_generator():
 
 
 
-class Fault_List(models.Model):
+class FaultList(models.Model):
     
     Location_choices = [('Harare',(
         ('Mbare','Mbare'),
@@ -51,7 +51,7 @@ class Employees(models.Model):
     engagement = [('engaged','Engaged'),('free','Free')]
     Name = models.CharField(max_length=200)
     status = models.CharField(max_length=20,choices=engagement,default='free')
-    Fault_Detail = models.ForeignKey(Fault_List, on_delete=models.DO_NOTHING )
+    Fault_Detail = models.ForeignKey(FaultList, on_delete=models.DO_NOTHING )
     def __str__(self):
         return str(self.id) + ' - ' + str(self.Name)
 

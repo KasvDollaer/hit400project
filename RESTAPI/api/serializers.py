@@ -1,9 +1,9 @@
 from rest_framework import serializers
 from .models import *
 
-class Fault_ListSerializer(serializers.ModelSerializer):
+class FaultListSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Fault_List
+        model = FaultList
         fields = '__all__'
 
 class EmployeesSerializer(serializers.ModelSerializer):
