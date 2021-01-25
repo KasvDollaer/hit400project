@@ -12,7 +12,7 @@ def fault_number_generator():
 class ResolvedManager(models.Manager):
     def get_queryset(self):
         return super(ResolvedManager, self).get_queryset()\
-                                           .filter(status="resolved")
+                                           .filter(Status="resolved")
 
 
 
@@ -64,6 +64,7 @@ class Employee(models.Model):
     Fault_Detail = models.ForeignKey(FaultList, on_delete=models.DO_NOTHING )
     def __str__(self):
         return str(self.id) + ' - ' + str(self.Name)
+  
 
 class LoadShedding(models.Model):
     Loadshedding_choices = [('Harare',(
@@ -98,10 +99,13 @@ class LoadShedding(models.Model):
         ordering = ['-id']
     def __str__(self):
         return str(self.id) + ' - ' + str(self.Area_name)
+    
 class Incident(models.Model):
     Location = models.CharField(max_length=200,null=False,blank=False)
     Province = models.CharField(max_length=200,null = True)
     Description = models.TextField(max_length=10000)
+    
 
+    
 
 
