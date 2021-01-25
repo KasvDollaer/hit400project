@@ -54,6 +54,9 @@ class FaultList(models.Model):
         ordering = ['-created']
     def __str__(self):
         return str(self.Fault_number) + ' - ' + str(self.Name)
+
+    objects = models.Manager()
+    resolved = ResolvedManager()
 class Employees(models.Model):
     engagement = [('engaged','Engaged'),('free','Free')]
     Name = models.CharField(max_length=200)
