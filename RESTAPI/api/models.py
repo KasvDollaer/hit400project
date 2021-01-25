@@ -57,7 +57,7 @@ class FaultList(models.Model):
 
     objects = models.Manager()
     resolved = ResolvedManager()
-class Employees(models.Model):
+class Employee(models.Model):
     engagement = [('engaged','Engaged'),('free','Free')]
     Name = models.CharField(max_length=200)
     status = models.CharField(max_length=20,choices=engagement,default='free')
@@ -98,7 +98,7 @@ class LoadShedding(models.Model):
         ordering = ['-id']
     def __str__(self):
         return str(self.id) + ' - ' + str(self.Area_name)
-class Incidents(models.Model):
+class Incident(models.Model):
     Location = models.CharField(max_length=200,null=False,blank=False)
     Province = models.CharField(max_length=200,null = True)
     Description = models.TextField(max_length=10000)
