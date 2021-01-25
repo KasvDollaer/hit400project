@@ -1,11 +1,18 @@
 from django.db import models
+from django.contrib.auth.models import User
+from django.urls import reverse
 import random
+
 
 # Create your models here.
 def fault_number_generator():
     prof_number = str(random.randint(100001, 999999))
     return prof_number
 
+class ResolvedManager(models.Manager):
+    def get_queryset(self):
+        return super(ResolvedManager, self).get_queryset()\
+                                           .filter(status="resolved")
 
 
 
