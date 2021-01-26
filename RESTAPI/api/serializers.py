@@ -8,7 +8,7 @@ class FaultListSerializer(serializers.ModelSerializer):
 
 class EmployeeSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Employees
+        model = Employee
         fields = '__all__'
 
 class LoadSheddingSerializer(serializers.ModelSerializer):
@@ -18,5 +18,5 @@ class LoadSheddingSerializer(serializers.ModelSerializer):
 
 class IncidentSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Incidents
+        model = Incident
         fields = '__all__'

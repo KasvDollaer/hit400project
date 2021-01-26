@@ -9,6 +9,7 @@
             <p>{{ fault.location }}</p>
             <p>{{ fault.description }}</p>
             <p>{{ fault.duration }}</p>
+        {% endfor %}
         </div>
         
         <div>
@@ -20,7 +21,28 @@
                 <p>{{ rfault.location }}</p>
                 <p>{{ rfault.description }}</p>
                 <p>{{ rfault.duration }}</p>
+                {% endfor %}
+            {% else %}
+                <h2><strong>There are no resolved faults</strong></h2>
+            {% endif %}
+        </div>
+        <div>
+            <h1>LoadShedding Schedule</h1>
+            {% for load in LoadSheddings %}
+                <p> {{ load.Area_name }} </p>
+                <p>{{ load.Duration }}</p>
+                <p>{{ load.Date }}</p>
+                <p>{{ load.reason }}</p>
 
+            {% endfor %}
+        </div>
+
+        <div>
+            <h1> Incidents</h1>
+            {% for accident in incidents %}
+                <p>{{ accident.Location }}</p>
+                <p>{{ accident.Province }}</p>
+                <p>{{ accident.Description }}</p>
         </div>
     </body>
 </html>
