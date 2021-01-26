@@ -1,0 +1,26 @@
+<html>
+    <body>
+        <div> 
+            <h1> Pending Faults List</h1>    
+        {% for fault in faults %}
+
+            <p>{{ fault.fault_number }}</p>
+            <p>{{ fault.name }}</p>
+            <p>{{ fault.location }}</p>
+            <p>{{ fault.description }}</p>
+            <p>{{ fault.duration }}</p>
+        </div>
+        
+        <div>
+            <h1> Resolved Faults</h1>
+            {% if resolved %}
+                {% for rfault in resolved %}
+                <p>{{ rfault.fault_number }}</p>
+                <p>{{ rfault.name }}</p>
+                <p>{{ rfault.location }}</p>
+                <p>{{ rfault.description }}</p>
+                <p>{{ rfault.duration }}</p>
+
+        </div>
+    </body>
+</html>
