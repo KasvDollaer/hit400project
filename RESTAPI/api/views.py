@@ -36,6 +36,9 @@ def FaultDetails(request, Fault_number):
     Fault = get_object_or_404(FaultList, Fault_number=Fault_number)
   
     Form = None
+    #  article = Article.objects.get(pk=1)
+    #  form = ArticleForm(instance=article)
+    #form for editing existing fault
 
     if Fault.Status == 'Current' and request.method == 'POST':
         Form = AddFaultForm(data=request.POST)
