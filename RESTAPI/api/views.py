@@ -32,10 +32,10 @@ def ListPage(request):
      'AddFault': form,
     })
 
-def FaultDetails(request, id):
-    Fault = get_object_or_404(FaultList, id=id)
+def FaultDetails(request, Fault_number):
+    Fault = get_object_or_404(FaultList, Fault_number=Fault_number)
   
-
+    Form = None
 
     if Fault.Status == 'Current' and request.method == 'POST':
         Form = AddFaultForm(data=request.POST)

@@ -7,7 +7,7 @@
         {% for fault in faults %}
 
             <p>{{ fault.Fault_number }}</p>
-            <p>{{ fault.Name }}</p>
+            <a href="{% url 'api:fault_details' fault.Fault_number %}"><p>{{ fault.Name }}</p></a>
             <p>{{ fault.Location }}</p>
             <p>{{ fault.Description }}</p>
             <p>{{ fault.Duration }}</p>
