@@ -3,6 +3,7 @@ from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from .models import FaultList, LoadShedding, Incident, Employee
+from .forms import *
 from .serializers import *
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -16,17 +17,41 @@ def ListPage(request):
     resolvedFaults = FaultList.resolved.all()
     incidents = Incident.objects.all()
     LoadSheddings = LoadShedding.objects.all()
+    
+    if request.method == 'POST':
+        form = AddFaultForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+    else:
+        form = AddFaultForm()
     return render(request, 'clerk/views/list.html', 
     {'faults': faults,
      'resolved': resolvedFaults,
      'incidents': incidents,
      'LoadSheddings': LoadSheddings,
+     'AddFault': form,
     })
 
 def FaultDetails(request, id):
     Fault = get_object_or_404(FaultList, id=id)
+  
+
+
+    if Fault.Status == 'Current' and request.method == 'POST':
+        Form = AddFaultForm(data=request.POST)
+        if Form.is_valid():
+            Form.save()
+    elif Fault.Status == 'New' and request.method == 'GET':
+        Form = AddFaultForm()
+        Form.Status = 'Current'
+
+
+
+        # Fault.Status = 'Current'
+
+
     #use this view for both editing and details
-    return render(request, 'clerk/views/faultdetail.html', {'Fault': Fault})
+    return render(request, 'clerk/views/faultdetail.html', {'Fault': Fault, 'form': Form})
 
 
 def IncidentsDetails(request, id):

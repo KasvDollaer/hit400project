@@ -1,3 +1,5 @@
+
+
 <html>
     <body>
         <div> 
@@ -11,7 +13,15 @@
             <p>{{ fault.Duration }}</p>
         {% endfor %}
         </div>
-        
+
+        <div>
+            <h3>Add A new Fault</h3>
+            <form method="POST">
+                {{ AddFault.as_p }}
+                {% csrf_token %}
+                <p><input type="submit" value='Add Fault'></p>
+            </form>  
+        </div>
         <div>
             <h1> Resolved Faults</h1>
             {% if resolved %}

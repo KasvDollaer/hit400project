@@ -95,15 +95,18 @@ class LoadShedding(models.Model):
     Duration = models.IntegerField()
     Date = models.DateTimeField()
     reason = models.TextField(max_length=None,blank=True,)
+    
     class Meta:
         ordering = ['-id']
     def __str__(self):
         return str(self.id) + ' - ' + str(self.Area_name)
     
 class Incident(models.Model):
+    Status_choices = [('current','Current'),('resolved','Resolved')]
     Location = models.CharField(max_length=200,null=False,blank=False)
     Province = models.CharField(max_length=200,null = True)
     Description = models.TextField(max_length=10000)
+    Status = models.CharField(max_length=20, choices=Status_choices,default='Current')
     
 
     
