@@ -18,7 +18,7 @@ class LoadSheddingForm(forms.ModelForm):   #form rinobuda paLoadshedding page
 class IncidentForm(forms.ModelForm):   #form rinobuda paIncidents page
     class Meta:
         model = Incident
-        exclude = ('Status',)
+        exclude = '__all__'
 # class IncidentUpdateForm(forms.ModelForm):   #form rinobuda paIncidents page
 #     class Meta:
 #         model = Incident

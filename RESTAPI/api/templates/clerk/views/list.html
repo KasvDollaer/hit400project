@@ -26,11 +26,11 @@
             <h1> Resolved Faults</h1>
             {% if resolved %}
                 {% for rfault in resolved %}
-                <p>{{ rfault.fault_number }}</p>
-                <p>{{ rfault.name }}</p>
-                <p>{{ rfault.location }}</p>
-                <p>{{ rfault.description }}</p>
-                <p>{{ rfault.duration }}</p>
+                <p>{{ rfault.Fault_number }}</p>
+                <p>{{ rfault.Name }}</p>
+                <p>{{ rfault.Location }}</p>
+                <p>{{ rfault.Description }}</p>
+                <p>{{ rfault.Duration }}</p>
                 {% endfor %}
             {% else %}
                 <h2><strong>There are no resolved faults</strong></h2>

@@ -13,7 +13,7 @@ from rest_framework import status
 #regular views for the clerk
 
 def ListPage(request):
-    faults = FaultList.objects.all()
+    faults = FaultList.objects.filter(Status='new')
     resolvedFaults = FaultList.resolved.all()
     incidents = Incident.objects.all()
     LoadSheddings = LoadShedding.objects.all()
