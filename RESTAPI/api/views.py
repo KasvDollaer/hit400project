@@ -50,14 +50,9 @@ def FaultDetails(request, Fault_number):
 def IncidentsDetails(request, id):
     Incidents = get_object_or_404(Incident, id=id)
 
-    inci = IncidentForm()
-
-    if request.method == 'POST':
-        inci = IncidentForm(data=request.POST)
-        if inci.is_valid():
-            inci.save()
+   
     #use this view for viewing fault details
-    return render(request, 'clerk/views/Incidents.html', {'Incidents': Incidents, 'inci': inci})
+    return render(request, 'clerk/views/Incidents.html', {'Incidents': Incidents})
 
 
 def LoadSheddingDetails(request, id):
