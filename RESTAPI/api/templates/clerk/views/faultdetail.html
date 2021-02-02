@@ -13,5 +13,14 @@
        <p>{{ Fault.Status}}</p> 
        <p>{{ Fault.created}}</p> 
     </div>
+
+    <div>
+        <h3>Update The current Fault</h3>
+        <form method="POST">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <p><input type="submit" value='Update Fault'></p>
+        </form>  
+    </div>
 </body>
 </html>

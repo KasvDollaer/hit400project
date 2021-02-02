@@ -35,26 +35,14 @@ def ListPage(request):
 def FaultDetails(request, Fault_number):
     Fault = get_object_or_404(FaultList, Fault_number=Fault_number)
   
-    Form = None
-    #  article = Article.objects.get(pk=1)
-    #  form = ArticleForm(instance=article)
-    #form for editing existing fault
-
-    # if Fault.Status == 'Current' and request.method == 'POST':
-    #     Form = AddFaultForm(data=request.POST)
-    #     if Form.is_valid():
-    #         Form.save()
-    # elif Fault.Status == 'New' and request.method == 'GET':
-    #     Form = AddFaultForm()
-    #     Form.Status = 'Current'
-
-
-
-        # Fault.Status = 'Current'
-
-
+    form = FaultUpdateForm(instance=Fault)
+    
+    if request.method == 'POST':
+        form = FaultUpdateForm(data=request.POST)
+        form.save()
+        
     #use this view for both editing and details
-    return render(request, 'clerk/views/faultdetail.html', {'Fault': Fault, 'form': Form})
+    return render(request, 'clerk/views/faultdetail.html', {'Fault': Fault, 'form': form})
 
 
 def IncidentsDetails(request, id):
