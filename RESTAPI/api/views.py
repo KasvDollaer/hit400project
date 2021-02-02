@@ -40,13 +40,13 @@ def FaultDetails(request, Fault_number):
     #  form = ArticleForm(instance=article)
     #form for editing existing fault
 
-    if Fault.Status == 'Current' and request.method == 'POST':
-        Form = AddFaultForm(data=request.POST)
-        if Form.is_valid():
-            Form.save()
-    elif Fault.Status == 'New' and request.method == 'GET':
-        Form = AddFaultForm()
-        Form.Status = 'Current'
+    # if Fault.Status == 'Current' and request.method == 'POST':
+    #     Form = AddFaultForm(data=request.POST)
+    #     if Form.is_valid():
+    #         Form.save()
+    # elif Fault.Status == 'New' and request.method == 'GET':
+    #     Form = AddFaultForm()
+    #     Form.Status = 'Current'
 
 
 

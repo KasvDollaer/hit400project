@@ -6,10 +6,10 @@ class AddFaultForm(forms.ModelForm):   #rinobuda paZasi pemaFault lists
         model = FaultList
         fields = ('Name', 'Location', 'Duration', 'Description')
 
-# class FaultUpdateForm(forms.ModelForm):    #form rinobuda paFault Details
-#     class Meta:
-#         model = FaultList
-#         fields = ('Status')
+class FaultUpdateForm(forms.ModelForm):    #form rinobuda paFault Details
+    class Meta:
+        model = FaultList
+        fields = ('Status',)
 
 class LoadSheddingForm(forms.ModelForm):   #form rinobuda paLoadshedding page
     class Meta:
