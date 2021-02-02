@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
@@ -38,8 +38,10 @@ def FaultDetails(request, Fault_number):
     form = FaultUpdateForm(instance=Fault)
     
     if request.method == 'POST':
-        form = FaultUpdateForm(data=request.POST)
-        form.save()
+        form = FaultUpdateForm(data=request.POST, instance=Fault)
+        if form.is_valid():
+            form.save()
+            return redirect('/faults' )
         
     #use this view for both editing and details
     return render(request, 'clerk/views/faultdetail.html', {'Fault': Fault, 'form': form})

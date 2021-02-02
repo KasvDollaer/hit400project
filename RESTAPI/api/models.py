@@ -11,8 +11,7 @@ def fault_number_generator():
 
 class ResolvedManager(models.Manager):
     def get_queryset(self):
-        return super(ResolvedManager, self).get_queryset()\
-                                           .filter(Status="resolved")
+        return super(ResolvedManager, self).get_queryset().filter(Status="resolved")
 
 
 
