@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from .views import *
+from .views import FaultAPIView
 
 app_name = 'api'
 

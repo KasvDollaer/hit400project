@@ -8,6 +8,8 @@ from .serializers import *
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.views import APIView
+
 
 # Create your views here.
 #regular views for the clerk
@@ -59,3 +61,20 @@ def LoadSheddingDetails(request, id):
     LoadSheddings = get_object_or_404(LoadShedding, id=id)
     return render(request, 'clerk/views/LoadShedding.html', {'LoadShedding': LoadSheddings})        
 #Api views for Mobile App
+
+class FaultAPIView(APIView): #get all faults
+    def get(self, request):
+        faults = FaultList.objects.filter(Status='new')
+        resolvedFaults = FaultList.resolved.all()
+        faultserializer = FaultListSerializer(faults, many=True)
+        rfaultserializer = FaultListSerializer(resolvedFaults, many=True)
+        return Response(faultserializer.data) #rfaultserializer.data])  #returning one serializer for now until i figure out how to do what i want
+    def post(self, request):
+        faultserializer = FaultListSerializer(data=request.data)
+        if faultserializer.is_valid():
+            faultserializer.save()
+            return Response(faultserializer.data, status=status.HTTP_201_CREATED)
+        return Response(faultserializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
