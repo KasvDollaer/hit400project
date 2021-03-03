@@ -140,7 +140,7 @@ class IncidentDetailsAPIView(APIView): #incident details
         incident = self.get_object(id)
         incident.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
- class LoadsheddingAPIView(APIView): #get all Loadshedding Schedules
+class LoadsheddingAPIView(APIView): #get all Loadshedding Schedules
     def get(self, request):
         LoadSheddings = LoadShedding.objects.all()
         serializer = LoadSheddingSerializer(LoadSheddings, many=True)
@@ -153,7 +153,7 @@ class IncidentDetailsAPIView(APIView): #incident details
     #         return Response(load.data, status=status.HTTP_201_CREATED)
     #     return Response(load.errors, status=status.HTTP_400_BAD_REQUEST)
 
-class LoadsheddingAPIView(APIView): #loadshedding details
+class LoadsheddingDetailsAPIView(APIView): #loadshedding details
     def get_object(self, id):
         try:
             return LoadShedding.objects.get(id=id)
