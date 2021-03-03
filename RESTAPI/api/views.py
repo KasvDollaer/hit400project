@@ -68,7 +68,7 @@ class FaultAPIView(APIView): #get all faults
         resolvedFaults = FaultList.resolved.all()
         faultserializer = FaultListSerializer(faults, many=True)
         rfaultserializer = FaultListSerializer(resolvedFaults, many=True)
-        return Response(faultserializer.data) #rfaultserializer.data])  #returning one serializer for now until i figure out how to do what i want
+        return Response(faultserializer.data + rfaultserializer.data)  #returning one serializer for now until i figure out how to do what i want
     def post(self, request):
         faultserializer = FaultListSerializer(data=request.data)
         if faultserializer.is_valid():
@@ -76,5 +76,101 @@ class FaultAPIView(APIView): #get all faults
             return Response(faultserializer.data, status=status.HTTP_201_CREATED)
         return Response(faultserializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+# class FaultDetailsAPIView(APIView): 
+#     def get_object(self, Fault_number):
+#         try:
+#             return FaultList.objects.get(Fault_number=Fault_number)
+        
+#         except FaultList.DoesNotExist:
+#             return HttpResponse(status=status.HTTP_404_NOT_FOUND)
+
+#     def get(self, request, Fault_number):
+#         Fault = self.get_object(Fault_number)
+#         faultserializer = faultserializer(Fault)
+#         return Response(faultserializer.data)
+#     def put(self, request, id):
+#         fault = self.get_object(Fault_number)
+#         serializer = FaultListSerializer(fault, data=request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(serializer.data)
+#         return Response(serializer.errors, status= status.HTTP_400_BAD_REQUEST)
+#     def delete(self, request, id):
+#         fault = self.get_object(Fault_number)
+#         fault.delete()
+#         return Response(status=status.HTTP_204_NO_CONTENT)
+    
 
 
+# class IncidentAPIView(APIView): #get all faults
+#     def get(self, request):
+#         incidents = Incident.objects.all()
+#         incidentserializer = IncidentSerializer(resolvedFaults, many=True)
+#         return Response(incidentserializer.data) 
+#     def post(self, request):
+#         incidentserializer = IncidentSerializer(data=request.data)
+#         if incidentserializer.is_valid():
+#             incidentserializer.save()
+#             return Response(incidentserializer.data, status=status.HTTP_201_CREATED)
+#         return Response(incidentserializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+# class IncidentDetailsAPIView(APIView):
+#     def get_object(self, Fault_number):
+#         try:
+#             return Incident.objects.get(Fault_number=Fault_number)
+        
+#         except FaultList.DoesNotExist:
+#             return HttpResponse(status=status.HTTP_404_NOT_FOUND)
+
+#     def get(self, request, Fault_number):
+#         Fault = self.get_object(Fault_number)
+#         faultserializer = faultserializer(Fault)
+#         return Response(faultserializer.data)
+#     def put(self, request, id):
+#         fault = self.get_object(Fault_number)
+#         serializer = FaultListSerializer(fault, data=request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(serializer.data)
+#         return Response(serializer.errors, status= status.HTTP_400_BAD_REQUEST)
+#     def delete(self, request, id):
+#         fault = self.get_object(Fault_number)
+#         fault.delete()
+#         return Response(status=status.HTTP_204_NO_CONTENT)
+#  class FaultAPIView(APIView): #get all faults
+#     def get(self, request):
+#         faults = FaultList.objects.filter(Status='new')
+#         resolvedFaults = FaultList.resolved.all()
+#         faultserializer = FaultListSerializer(faults, many=True)
+#         rfaultserializer = FaultListSerializer(resolvedFaults, many=True)
+#         return Response(faultserializer.data) #rfaultserializer.data])  #returning one serializer for now until i figure out how to do what i want
+#     def post(self, request):
+#         faultserializer = FaultListSerializer(data=request.data)
+#         if faultserializer.is_valid():
+#             faultserializer.save()
+#             return Response(faultserializer.data, status=status.HTTP_201_CREATED)
+#         return Response(faultserializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+# class FaultDetailsAPIView(APIView):
+#     def get_object(self, Fault_number):
+#         try:
+#             return FaultList.objects.get(Fault_number=Fault_number)
+        
+#         except FaultList.DoesNotExist:
+#             return HttpResponse(status=status.HTTP_404_NOT_FOUND)
+
+#     def get(self, request, Fault_number):
+#         Fault = self.get_object(Fault_number)
+#         faultserializer = faultserializer(Fault)
+#         return Response(faultserializer.data)
+#     def put(self, request, id):
+#         fault = self.get_object(Fault_number)
+#         serializer = FaultListSerializer(fault, data=request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(serializer.data)
+#         return Response(serializer.errors, status= status.HTTP_400_BAD_REQUEST)
+#     def delete(self, request, id):
+#         fault = self.get_object(Fault_number)
+#         fault.delete()
+#         return Response(status=status.HTTP_204_NO_CONTENT)       
