@@ -11,7 +11,7 @@
         <p>{{ LoadSheddings.Duration }}</p>
         <p>{{ LoadSheddings.Date }}</p>
         <p>{{ LoadSheddings.reason }}</p>
-        <form method="PUT">
+        <form method="POST">
             {{ update.as_p }}
             {% csrf_token %}
             <p><input type="submit" value='Update LoadShedding'></p>
@@ -23,7 +23,7 @@
         <form method="POST">
             {{ form.as_p }}
             {% csrf_token %}
-            <p><input type="submit" value='Update Fault'></p>
+            <p><input type="submit" value='Create Loadshedding'></p>
         </form>  
     </div>
 </body>

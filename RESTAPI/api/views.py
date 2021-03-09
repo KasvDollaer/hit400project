@@ -72,15 +72,18 @@ def LoadSheddingDetails(request, id):
     form = LoadSheddingForm()
     update = LoadSheddingForm(instance=LoadSheddings)
     if request.method == 'POST':
-        form = IncidentForm(data=request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('/faults' )
-    elif request.method == 'PUT':
-        update = IncidentForm(data=request.POST, instance=update)
+        form = LoadSheddingForm(data=request.POST)
+        update = LoadSheddingForm(data=request.POST, instance=LoadSheddings)
         if update.is_valid():
             update.save()
             return redirect('/faults' )
+        if form.is_valid():
+            form.save()
+            return redirect('/faults' )
+    
+       
+        
+           
 
    
 
