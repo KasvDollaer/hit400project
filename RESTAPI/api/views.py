@@ -89,10 +89,10 @@ class FaultDetailsAPIView(APIView): #gets fault details
 
     def get(self, request, Fault_number):
         Fault = self.get_object(Fault_number)
-        faultserializer = faultserializer(Fault)
+        faultserializer = FaultListSerializer(Fault)
         return Response(faultserializer.data)
-    def put(self, request, id):
-        fault = self.get_object(Fault_number)
+    def put(self, request, Fault_number):
+        fault = self.get_object(Fault_number=Fault_number)
         serializer = FaultListSerializer(fault, data=request.data)
         if serializer.is_valid():
             serializer.save()
