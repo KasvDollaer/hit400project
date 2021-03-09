@@ -7,6 +7,7 @@ app_name = 'api'
 urlpatterns = [
     path('', views.ListPage, name="Home"),
     path('<int:Fault_number>/', views.FaultDetails, name="fault_details"),
+     path('incident/<int:id>/', views.IncidentsDetails, name="IncidentsDetails"),
     #api urls
     path('api/Fault', FaultAPIView.as_view()),
     path("api/faultDetails/<int:Fault_number>", FaultDetailsAPIView.as_view()),  #add integers to urls

@@ -13,6 +13,15 @@
             <p>{{ fault.Duration }}</p>
         {% endfor %}
         </div>
+        <h1> Current Faults List</h1>    
+        {% for fault in current %}
+
+            <p>{{ fault.Fault_number }}</p>
+            <a href="{% url 'api:fault_details' fault.Fault_number %}"><p>{{ fault.Name }}</p></a>
+            <p>{{ fault.Location }}</p>
+            <p>{{ fault.Description }}</p>
+            <p>{{ fault.Duration }}</p>
+        {% endfor %}
 
         <div>
             <h3>Add A new Fault</h3>
@@ -50,7 +59,7 @@
         <div>
             <h1> Incidents</h1>
             {% for accident in incidents %}
-                <p>{{ accident.Location }}</p>
+            <a href="{% url 'api:IncidentsDetails' accident.id %}"><p>{{ accident.Location }}</p></a>
                 <p>{{ accident.Province }}</p>
                 <p>{{ accident.Description }}</p>
                 <p>{{ accident.Status }}</p>

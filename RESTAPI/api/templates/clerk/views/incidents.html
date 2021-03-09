@@ -1,0 +1,27 @@
+html>
+
+<body>
+
+    <h1>Incident Details</h1>
+
+
+    <div class='card'>
+        <h1> Incident</h1>
+       
+            <p>{{ Incident.Location }}</p>
+            <p>{{ Incident.Province }}</p>
+            <p>{{ Incident.Description }}</p>
+            <p>{{ Incident.Status }}</p>
+       
+    </div>
+
+    <div>
+        <h3>Update The current Fault</h3>
+        <form method="POST">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <p><input type="submit" value='Update Incident'></p>
+        </form>  
+    </div>
+</body>
+</html>

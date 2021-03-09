@@ -16,7 +16,7 @@ from rest_framework.views import APIView
 
 def ListPage(request):
     faults = FaultList.objects.filter(Status='new')
-    current = FaultList.objects.fitlter(Status='current')
+    current = FaultList.objects.filter(Status='current')
     resolvedFaults = FaultList.resolved.all()
     incidents = Incident.objects.all()
     LoadSheddings = LoadShedding.objects.all()
@@ -53,10 +53,17 @@ def FaultDetails(request, Fault_number):
 
 def IncidentsDetails(request, id):
     Incidents = get_object_or_404(Incident, id=id)
+    form = IncidentForm(instance=Incidents)
+    
+    if request.method == 'POST':
+        form = FaultUpdateForm(data=request.POST, instance=Incidents)
+        if form.is_valid():
+            form.save()
+            return redirect('/faults' )
 
    
-    #use this view for viewing fault details
-    return render(request, 'clerk/views/Incidents.html', {'Incidents': Incidents})
+    #use this view for viewing incident details
+    return render(request, 'clerk/views/incidents.html', {'Incidents': Incidents,'form': form})
 
 
 def LoadSheddingDetails(request, id):
@@ -71,9 +78,11 @@ class FaultAPIView(APIView): #get all faults
     def get(self, request):
         faults = FaultList.objects.filter(Status='new')
         resolvedFaults = FaultList.resolved.all()
+        currentFaults = FaultList.objects.filter(Status='current')
+        cfault = FaultListSerializer(currentFaults, many=True)
         faultserializer = FaultListSerializer(faults, many=True)
         rfaultserializer = FaultListSerializer(resolvedFaults, many=True)
-        return Response(faultserializer.data + rfaultserializer.data)  #returning one serializer for now until i figure out how to do what i want
+        return Response(faultserializer.data + rfaultserializer.data + cfault.data)  #returning one serializer for now until i figure out how to do what i want
     def post(self, request):
         faultserializer = FaultListSerializer(data=request.data) #insert condition to only post new faults via the api
         if faultserializer.is_valid():
