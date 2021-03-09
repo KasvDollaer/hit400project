@@ -56,7 +56,7 @@ def IncidentsDetails(request, id):
     form = IncidentForm(instance=Incidents)
     
     if request.method == 'POST':
-        form = FaultUpdateForm(data=request.POST, instance=Incidents)
+        form = IncidentForm(data=request.POST, instance=Incidents)
         if form.is_valid():
             form.save()
             return redirect('/faults' )
