@@ -68,7 +68,23 @@ def IncidentsDetails(request, id):
 
 def LoadSheddingDetails(request, id):
     LoadSheddings = get_object_or_404(LoadShedding, id=id)
-    return render(request, 'clerk/views/LoadShedding.html', {'LoadShedding': LoadSheddings})        
+
+    form = LoadSheddingForm()
+    update = LoadSheddingForm(instance=LoadSheddings)
+    if request.method == 'POST':
+        form = IncidentForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/faults' )
+    elif request.method == 'PUT':
+        update = IncidentForm(data=request.POST, instance=update)
+        if update.is_valid():
+            update.save()
+            return redirect('/faults' )
+
+   
+
+    return render(request, 'clerk/views/loadshedding.html', {'LoadShedding': LoadSheddings, 'update': update,'form': form })        
 
 
 

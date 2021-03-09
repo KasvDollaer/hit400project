@@ -1,0 +1,30 @@
+<html>
+
+<body>
+
+    <h1>Loadshedding Schedules </h1>
+
+
+    <div class='card'>
+       
+        <p> {{ LoadSheddings.Area_name }} </p>
+        <p>{{ LoadSheddings.Duration }}</p>
+        <p>{{ LoadSheddings.Date }}</p>
+        <p>{{ LoadSheddings.reason }}</p>
+        <form method="PUT">
+            {{ update.as_p }}
+            {% csrf_token %}
+            <p><input type="submit" value='Update LoadShedding'></p>
+        </form>  
+    </div>
+
+    <div>
+        <h3>Create a loadshedding Schedule</h3>
+        <form method="POST">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <p><input type="submit" value='Update Fault'></p>
+        </form>  
+    </div>
+</body>
+</html>

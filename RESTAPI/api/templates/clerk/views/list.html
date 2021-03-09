@@ -48,7 +48,7 @@
         <div>
             <h1>LoadShedding Schedule</h1>
             {% for load in LoadSheddings %}
-                <p> {{ load.Area_name }} </p>
+                <a href="{% url 'api:loadshedding' load.id %}"><p> {{ load.Area_name }} </p></a>
                 <p>{{ load.Duration }}</p>
                 <p>{{ load.Date }}</p>
                 <p>{{ load.reason }}</p>
