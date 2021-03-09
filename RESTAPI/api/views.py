@@ -16,6 +16,7 @@ from rest_framework.views import APIView
 
 def ListPage(request):
     faults = FaultList.objects.filter(Status='new')
+    current = FaultList.objects.fitlter(Status='current')
     resolvedFaults = FaultList.resolved.all()
     incidents = Incident.objects.all()
     LoadSheddings = LoadShedding.objects.all()
@@ -28,6 +29,7 @@ def ListPage(request):
         form = AddFaultForm()
     return render(request, 'clerk/views/list.html', 
     {'faults': faults,
+     'current': current,    
      'resolved': resolvedFaults,
      'incidents': incidents,
      'LoadSheddings': LoadSheddings,
